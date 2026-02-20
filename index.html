@@ -17,144 +17,408 @@ box-sizing:border-box;
 font-family:'Poppins',sans-serif;
 }
 
+:root{
+--primary-gradient:linear-gradient(135deg,#667eea,#764ba2,#43cea2);
+--secondary-gradient:linear-gradient(45deg,#ff9966,#ff5e62);
+--accent-gold:#ffd700;
+}
+
 body{
-height:100vh;
-background:linear-gradient(135deg,#667eea,#764ba2,#43cea2);
+min-height:100vh;
+background:var(--primary-gradient);
 background-size:400% 400%;
-animation:bgMove 12s infinite alternate;
+animation:bgMove 15s infinite alternate;
 display:flex;
 justify-content:center;
 align-items:center;
+padding:20px;
+overflow-x:hidden;
 }
 
 @keyframes bgMove{
 0%{background-position:left;}
+50%{background-position:center;}
 100%{background-position:right;}
 }
 
+@keyframes slideInDown{
+from{opacity:0; transform:translateY(-30px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes slideInUp{
+from{opacity:0; transform:translateY(30px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes pulse{
+0%,100%{opacity:1;}
+50%{opacity:0.7;}
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0px);}
+50%{transform:translateY(-10px);}
+}
+
 .container{
-width:90%;
-max-width:750px;
-background:rgba(255,255,255,0.15);
-backdrop-filter:blur(15px);
-border-radius:20px;
-padding:40px;
+width:100%;
+max-width:800px;
+background:rgba(255,255,255,0.12);
+backdrop-filter:blur(20px);
+border-radius:30px;
+padding:50px 40px;
 text-align:center;
-box-shadow:0 10px 30px rgba(0,0,0,0.25);
+box-shadow:0 15px 50px rgba(0,0,0,0.3);
 color:white;
+border:1px solid rgba(255,255,255,0.2);
+animation:slideInDown 0.8s ease;
+}
+
+.header{
+margin-bottom:30px;
 }
 
 h1{
-font-size:32px;
-margin-bottom:10px;
+font-size:42px;
+margin-bottom:8px;
+background:linear-gradient(45deg,#fff,#ffd700);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+background-clip:text;
+animation:float 3s ease-in-out infinite;
+font-weight:700;
+letter-spacing:1px;
 }
 
 .subtitle{
+font-size:16px;
 opacity:0.9;
+margin-bottom:30px;
+font-weight:300;
+letter-spacing:0.5px;
+}
+
+.search-container{
 margin-bottom:25px;
+position:relative;
 }
 
 .search-box{
 display:flex;
 justify-content:center;
-gap:10px;
-margin-bottom:25px;
+gap:12px;
+margin-bottom:15px;
+flex-wrap:wrap;
 }
 
 input{
-padding:12px;
-width:65%;
+padding:15px 20px;
+width:70%;
 border:none;
-border-radius:10px;
+border-radius:15px;
 outline:none;
 font-size:16px;
+background:rgba(255,255,255,0.95);
+box-shadow:0 5px 20px rgba(0,0,0,0.15);
+transition:all 0.3s ease;
+color:#333;
+font-weight:500;
+}
+
+input:focus{
+transform:translateY(-2px);
+box-shadow:0 8px 25px rgba(0,0,0,0.2);
+background:white;
+}
+
+input::placeholder{
+color:#999;
+}
+
+#suggestions{
+position:absolute;
+top:55px;
+left:15%;
+width:70%;
+background:rgba(255,255,255,0.98);
+border-radius:15px;
+display:none;
+max-height:250px;
+overflow-y:auto;
+box-shadow:0 8px 30px rgba(0,0,0,0.2);
+z-index:100;
+}
+
+.suggestion-item{
+padding:12px 20px;
+cursor:pointer;
+color:#333;
+text-align:left;
+border-bottom:1px solid #eee;
+transition:all 0.2s ease;
+font-size:15px;
+}
+
+.suggestion-item:hover{
+background:#f0f0f0;
+transform:translateX(5px);
+}
+
+.suggestion-item:last-child{
+border-bottom:none;
 }
 
 button{
-padding:12px 20px;
+padding:15px 30px;
 border:none;
-border-radius:10px;
-background:linear-gradient(45deg,#ff9966,#ff5e62);
+border-radius:15px;
+background:var(--secondary-gradient);
 color:white;
 font-weight:bold;
 cursor:pointer;
-transition:0.3s;
+transition:all 0.3s ease;
+font-size:16px;
+box-shadow:0 5px 15px rgba(255,100,100,0.4);
+position:relative;
+overflow:hidden;
 }
 
 button:hover{
-transform:scale(1.08);
-box-shadow:0 5px 15px rgba(0,0,0,0.3);
+transform:translateY(-3px);
+box-shadow:0 8px 25px rgba(255,100,100,0.5);
+}
+
+button:active{
+transform:translateY(-1px);
+}
+
+.quick-search{
+display:flex;
+justify-content:center;
+gap:8px;
+flex-wrap:wrap;
+margin-top:15px;
+}
+
+.quick-btn{
+padding:8px 16px;
+background:rgba(255,255,255,0.2);
+border:2px solid rgba(255,255,255,0.5);
+border-radius:20px;
+color:white;
+font-size:13px;
+cursor:pointer;
+transition:all 0.3s ease;
+font-weight:500;
+}
+
+.quick-btn:hover{
+background:rgba(255,255,255,0.4);
+border-color:white;
+transform:translateY(-2px);
+box-shadow:0 5px 15px rgba(255,255,255,0.2);
 }
 
 .result{
 display:none;
-margin-top:20px;
+margin-top:30px;
 text-align:left;
-background:rgba(255,255,255,0.2);
-padding:25px;
-border-radius:15px;
-animation:fade 0.6s ease;
-}
-
-@keyframes fade{
-from{opacity:0; transform:translateY(15px);}
-to{opacity:1; transform:translateY(0);}
+background:rgba(255,255,255,0.1);
+padding:30px;
+border-radius:20px;
+animation:slideInUp 0.6s ease;
+border:1px solid rgba(255,255,255,0.2);
+max-height:600px;
+overflow-y:auto;
 }
 
 .card{
-margin:10px 0;
-padding:12px;
+margin:12px 0;
+padding:18px;
+background:rgba(255,255,255,0.15);
+border-radius:15px;
+border-left:4px solid rgba(255,255,255,0.5);
+transition:all 0.3s ease;
+backdrop-filter:blur(10px);
+}
+
+.card:hover{
 background:rgba(255,255,255,0.25);
-border-radius:10px;
+transform:translateX(5px);
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
 }
 
 .label{
-font-weight:bold;
-color:#ffd700;
+font-weight:700;
+color:var(--accent-gold);
+display:block;
+margin-bottom:6px;
+font-size:14px;
+letter-spacing:0.5px;
+}
+
+.label-value{
+font-weight:400;
+color:rgba(255,255,255,0.95);
+font-size:15px;
 }
 
 .section-title{
-font-size:18px;
-font-weight:bold;
-margin-top:15px;
-margin-bottom:10px;
-border-bottom:2px solid rgba(255,255,255,0.3);
-padding-bottom:8px;
+font-size:20px;
+font-weight:700;
+margin-top:20px;
+margin-bottom:15px;
+border-bottom:3px solid rgba(255,255,255,0.4);
+padding-bottom:12px;
+letter-spacing:0.5px;
 }
 
 .info-grid{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:10px;
+gap:12px;
 }
 
 .info-item{
-background:rgba(255,255,255,0.15);
-padding:10px;
-border-radius:8px;
-font-size:13px;
+background:rgba(255,255,255,0.12);
+padding:15px;
+border-radius:12px;
+font-size:14px;
+border:1px solid rgba(255,255,255,0.2);
+transition:all 0.3s ease;
+}
+
+.info-item:hover{
+background:rgba(255,255,255,0.18);
+transform:translateY(-2px);
 }
 
 .warning{
-background:rgba(255,100,100,0.3);
-border-left:4px solid #ff6464;
-padding:10px;
-margin:10px 0;
-border-radius:5px;
+background:rgba(220,53,69,0.25);
+border-left:5px solid #dc3545;
+padding:15px;
+margin:12px 0;
+border-radius:12px;
+font-size:14px;
+backdrop-filter:blur(10px);
 }
 
 .dosage{
-background:rgba(100,200,255,0.3);
-border-left:4px solid #64c8ff;
-padding:10px;
-margin:10px 0;
-border-radius:5px;
+background:rgba(40,167,255,0.25);
+border-left:5px solid #28a7ff;
+padding:15px;
+margin:12px 0;
+border-radius:12px;
+font-size:14px;
+backdrop-filter:blur(10px);
+}
+
+.success-msg{
+background:rgba(40,200,100,0.25);
+border-left:5px solid #28c864;
+padding:15px;
+margin:12px 0;
+border-radius:12px;
+color:rgba(255,255,255,0.95);
+}
+
+.loading-spinner{
+display:inline-block;
+width:20px;
+height:20px;
+border:3px solid rgba(255,255,255,0.3);
+border-top-color:white;
+border-radius:50%;
+animation:spin 0.8s linear infinite;
+}
+
+@keyframes spin{
+to{transform:rotate(360deg);}
 }
 
 .footer{
-margin-top:20px;
+margin-top:30px;
+padding-top:20px;
+border-top:1px solid rgba(255,255,255,0.2);
 font-size:13px;
-opacity:0.8;
+opacity:0.85;
+line-height:1.6;
+}
+
+.footer-link{
+color:var(--accent-gold);
+text-decoration:none;
+font-weight:600;
+transition:all 0.3s ease;
+}
+
+.footer-link:hover{
+text-decoration:underline;
+opacity:1;
+}
+
+.theme-toggle{
+position:fixed;
+top:20px;
+right:20px;
+width:50px;
+height:50px;
+border-radius:50%;
+background:rgba(255,255,255,0.2);
+border:2px solid rgba(255,255,255,0.5);
+color:white;
+cursor:pointer;
+font-size:24px;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:all 0.3s ease;
+z-index:1000;
+backdrop-filter:blur(10px);
+}
+
+.theme-toggle:hover{
+background:rgba(255,255,255,0.4);
+transform:rotate(20deg) scale(1.1);
+}
+
+@media(max-width:600px){
+.container{
+padding:30px 20px;
+border-radius:20px;
+}
+
+h1{
+font-size:32px;
+}
+
+.search-box{
+flex-direction:column;
+}
+
+input{
+width:100%;
+}
+
+#suggestions{
+left:0;
+right:0;
+width:100%;
+}
+
+.info-grid{
+grid-template-columns:1fr;
+}
+
+.quick-search{
+gap:6px;
+}
+
+.quick-btn{
+font-size:12px;
+padding:6px 12px;
+}
 }
 
 </style>
@@ -162,20 +426,41 @@ opacity:0.8;
 
 <body>
 
+<button class="theme-toggle" id="themeToggle" title="Toggle theme">🌙</button>
+
 <div class="container">
 
+<div class="header">
 <h1>💊 Medinote</h1>
 <p class="subtitle">Smart Medicine Information Assistant</p>
+</div>
 
+<div class="search-container">
 <div class="search-box">
-<input type="text" id="disease" placeholder="Enter disease name (e.g., Fever, Cold, Cough, Acne, etc.)">
-<button onclick="searchMedicine()">Search</button>
+<input type="text" id="disease" placeholder="Search any disease... (Fever, Cold, Cough, etc.)" onkeyup="showSuggestions()">
+<button onclick="searchMedicine()">🔍 Search</button>
+</div>
+<div id="suggestions"></div>
+
+<div class="quick-search">
+<span style="width:100%; font-size:12px; opacity:0.8; margin-bottom:5px;">Quick Access:</span>
+<button class="quick-btn" onclick="quickSearch('fever')">🤒 Fever</button>
+<button class="quick-btn" onclick="quickSearch('cold')">🤧 Cold</button>
+<button class="quick-btn" onclick="quickSearch('headache')">🤕 Headache</button>
+<button class="quick-btn" onclick="quickSearch('cough')">😷 Cough</button>
+<button class="quick-btn" onclick="quickSearch('anxiety')">😰 Anxiety</button>
+<button class="quick-btn" onclick="quickSearch('asthma')">💨 Asthma</button>
+<button class="quick-btn" onclick="quickSearch('diabetes')">🩺 Diabetes</button>
+<button class="quick-btn" onclick="quickSearch('acne')">🧴 Acne</button>
+</div>
 </div>
 
 <div id="output" class="result"></div>
 
 <p class="footer">
-⚠ Educational purpose only — Always consult a doctor.
+⚠️ <strong>Disclaimer:</strong> Educational purpose only — Always consult a qualified doctor<br>
+🏥 This app provides general information and is not a substitute for professional medical advice<br>
+📱 For emergencies, contact emergency services immediately
 </p>
 
 </div>
@@ -555,44 +840,61 @@ return null;
 
 async function searchMedicine(){
 
-let disease = document.getElementById("disease").value.toLowerCase();
+let disease = document.getElementById("disease").value.toLowerCase().trim();
 let data = medicineDatabase[disease];
 let output = document.getElementById("output");
+document.getElementById("suggestions").style.display = "none";
 
 if(data){
 
 output.style.display="block";
 output.innerHTML = `
-<h3>🩺 Medicine Details for ${disease.charAt(0).toUpperCase() + disease.slice(1)}</h3>
-<div style="text-align:center; margin-bottom:15px; font-size:13px;">⏳ Fetching comprehensive information...</div>
+<h3 style="margin-bottom:20px; font-size:24px;">🩺 Medicine Guide: ${disease.charAt(0).toUpperCase() + disease.slice(1)}</h3>
+<div style="text-align:center; margin-bottom:20px; opacity:0.9;">
+  <span class="loading-spinner"></span> Fetching comprehensive information...
+</div>
 
 <div class="section-title">💊 Medicine Information</div>
-<div class="card"><span class="label">Medicine Name:</span> ${data.medicine}</div>
+<div class="card">
+  <span class="label">🔬 Medicine Name:</span>
+  <span class="label-value">${data.medicine}</span>
+</div>
 
-<div class="section-title">⏱️ Administration</div>
+<div class="section-title">⏱️ Administration & Dosage</div>
 <div class="dosage">
-  <div class="label">Dosage:</div> ${data.dosage}
+  <span class="label">💉 Dosage:</span>
+  <span class="label-value">${data.dosage}</span>
 </div>
-<div class="card"><span class="label">Consumption Time:</span> ${data.time}</div>
-<div class="card"><span class="label">Suitable Age:</span> ${data.age}</div>
+<div class="card">
+  <span class="label">⏰ Consumption Time:</span>
+  <span class="label-value">${data.time}</span>
+</div>
+<div class="card">
+  <span class="label">👶 Age Suitability:</span>
+  <span class="label-value">${data.age}</span>
+</div>
 
-<div class="section-title">⚠️ Important Information</div>
+<div class="section-title">⚠️ Important Safety Information</div>
 <div class="warning">
-  <div class="label">Side Effects:</div> ${data.sideEffect}
+  <span class="label">⚠️ Side Effects:</span>
+  <span class="label-value">${data.sideEffect}</span>
 </div>
 <div class="warning">
-  <div class="label">Contraindications:</div> ${data.contraindications}
+  <span class="label">🚫 Contraindications:</span>
+  <span class="label-value">${data.contraindications}</span>
 </div>
-<div class="card"><span class="label">Contains Steroid:</span> ${data.steroid}</div>
+<div class="card">
+  <span class="label">💊 Steroid Content:</span>
+  <span class="label-value">${data.steroid}</span>
+</div>
 
 <div id="apiData"></div>
 
-<div class="section-title">📚 Additional Resources</div>
-<div class="card" style="font-size:12px;">
-  Data sourced from<br>
-  ✓ RxNav (NIH)<br>
-  ✓ OpenFDA<br>
-  ✓ PubChem Database
+<div class="section-title">📚 Verified Sources</div>
+<div class="success-msg" style="border-left-color:#28c864;">
+  ✓ Data from NIH RxNav<br>
+  ✓ FDA Open Database<br>
+  ✓ PubChem NIH Database
 </div>
 `;
 
@@ -605,30 +907,92 @@ const apiDiv = document.getElementById("apiData");
 let apiHTML = '';
 
 if (rxData) {
-apiHTML += `<div class="card"><span class="label">📋 Drug Code (RxCUI):</span> ${rxData.rxcui}</div>`;
+apiHTML += `<div class="section-title">📋 Drug Information</div><div class="card"><span class="label">RxCUI Code:</span> <span class="label-value">${rxData.rxcui}</span></div>`;
 }
 
 if (fdaData && fdaData.sideEffects.length > 0) {
-apiHTML += `<div class="section-title">⚕️ FDA Reported Effects</div><div class="card">${fdaData.sideEffects.join(', ')}</div>`;
+apiHTML += `<div class="section-title">⚕️ FDA Database Info</div><div class="card"><span class="label-value">${fdaData.sideEffects.join(', ')}</span></div>`;
 }
 
 if (pubchemData) {
-apiHTML += `<div class="card"><span class="label">🧪 Chemical Info:</span> Available on PubChem</div>`;
+apiHTML += `<div class="card"><span class="label">🧪 Chemical Science:</span> <span class="label-value">Available on PubChem</span></div>`;
 }
 
 if (apiHTML) {
 apiDiv.innerHTML = apiHTML;
-} else {
-apiDiv.innerHTML = '<div class="card" style="font-size:12px;"><span class="label">💡 Tip:</span> For complete information, consult healthcare professional or pharmacist.</div>';
 }
 
 }
 else{
 output.style.display="block";
 output.innerHTML =
-"<div class='card'>❌ No data found for this condition.<br><br><strong>Available Conditions:</strong><br>Fever, Cold, Cough, Sorethroat, Asthma, Diabetes, Hypertension, Headache, Migraine, Acne, Indigestion, Diarrhea, Constipation, Skinallergy, Eczema, Hairloss, Anxiety, Depression, Insomnia, Backpain, Jointpain, Arthritis, Pneumonia, Bronchitis, Uti, Sinusitis, Highcholesterol, Anemia, Hypothyroidism, Gastritis<br><br>💡 Always consult a doctor for proper diagnosis and treatment.</div>";
+`<div style="text-align:center; padding:30px;">
+  <div style="font-size:24px; margin-bottom:20px;">❌ No Information Found</div>
+  <p style="margin-bottom:20px; opacity:0.9;">We couldn't find information for "<strong>${disease}</strong>"</p>
+  <div style="background:rgba(255,255,255,0.1); padding:20px; border-radius:15px; margin:20px 0; text-align:left; font-size:13px;">
+    <strong>Available Conditions (30+ options):</strong><br><br>
+    Fever • Cold • Cough • Sorethroat • Asthma • Diabetes • Hypertension • Headache • Migraine • Acne • Indigestion • Diarrhea • Constipation • Skinallergy • Eczema • Hairloss • Anxiety • Depression • Insomnia • Backpain • Jointpain • Arthritis • Pneumonia • Bronchitis • UTI • Sinusitis • Highcholesterol • Anemia • Hypothyroidism • Gastritis
+  </div>
+  <p style="opacity:0.8; margin-top:20px;">💡 Try one of the above conditions or use Quick Access buttons</p>
+</div>`;
 }
 }
+
+// Show search suggestions
+function showSuggestions() {
+const input = document.getElementById("disease").value.toLowerCase().trim();
+const suggestionsDiv = document.getElementById("suggestions");
+
+if (input.length === 0) {
+suggestionsDiv.style.display = "none";
+return;
+}
+
+const diseases = Object.keys(medicineDatabase);
+const filtered = diseases.filter(d => d.includes(input));
+
+if (filtered.length === 0) {
+suggestionsDiv.style.display = "none";
+return;
+}
+
+suggestionsDiv.style.display = "block";
+suggestionsDiv.innerHTML = filtered.map(disease => 
+  `<div class="suggestion-item" onclick="selectSuggestion('${disease}')">${disease.charAt(0).toUpperCase() + disease.slice(1)}</div>`
+).join('');
+}
+
+// Select from suggestions
+function selectSuggestion(disease) {
+document.getElementById("disease").value = disease;
+document.getElementById("suggestions").style.display = "none";
+searchMedicine();
+}
+
+// Quick search function
+function quickSearch(disease) {
+document.getElementById("disease").value = disease;
+searchMedicine();
+}
+
+// Theme toggle
+document.getElementById("themeToggle").addEventListener("click", function() {
+document.body.style.background = document.body.style.background.includes("135") ? 
+  "linear-gradient(225deg, #1a1a2e, #16213e, #0f3460)" : 
+  "linear-gradient(135deg, #667eea, #764ba2, #43cea2)";
+document.body.style.backgroundSize = "400% 400%";
+document.body.style.animation = "bgMove 15s infinite alternate";
+this.textContent = document.body.style.background.includes("135") ? "☀️" : "🌙";
+});
+
+// Allow Enter key to search
+document.addEventListener("DOMContentLoaded", function() {
+document.getElementById("disease").addEventListener("keypress", function(event) {
+if (event.key === "Enter") {
+searchMedicine();
+}
+});
+});
 
 </script>
 
