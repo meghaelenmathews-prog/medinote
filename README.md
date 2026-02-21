@@ -2,7 +2,7 @@
   <img src="./banner.jpeg" alt="Project Banner" width="100%">
 </p>
 
-# [] 🎯
+# [MEDINOTE] 🎯
 
 ## Basic Details
 
