@@ -1,12 +1,12 @@
-# [Project Name] 🎯
+# [MEDINOTE] 🎯
 
 ## Basic Details
 
-**Team Name:** [Name]
+**Team Name:** [SAVAGE SISTERS]
 
 ### Team Members
-- Member 1: [Name] - [College]
-- Member 2: [Name] - [College]
+- Member 1: [Megha Elen Mathews] - [Viswajothi College of Engineering and Technology]
+- Member 2: [Haniya Shahul] - [Viswajothi College of Engineering and Technology]
 
 ### Hosted Project Link
 [mention your project hosted link here]
@@ -15,7 +15,7 @@
 
 ## Project Description
 
-[2-3 lines about what your project does]
+[Medinote is an intelligent, web-based medicine guide application designed to help users quickly find information about medications, symptoms, and health-related queries. Built with a modern, responsive UI, it provides an intuitive interface for accessing medical information with a beautiful gradient design and glass-morphism effects.]
 
 ---
 
@@ -96,20 +96,54 @@ List the key features of your project:
 
 #### Screenshots
 
-![Screenshot1](Add screenshot 1 here with proper name) 
+![Screenshot1](/screenshot1) 
 *Add caption explaining what this shows*
 
-![Screenshot2](Add screenshot 2 here with proper name) 
+![Screenshot2](/screebshot2) 
 *Add caption explaining what this shows*
 
-![Screenshot3](Add screenshot 3 here with proper name) 
+![Screenshot3](/screenshot3) 
 *Add caption explaining what this shows*
 
 #### Diagrams
 
 **System Architecture:**
 
-[Architecture Diagram] 
+[┌─────────────────────────────────────────────────────────┐
+│                    Medinote Application                  │
+├─────────────────────────────────────────────────────────┤
+│                                                           │
+│  ┌─────────────────────────────────────────────────┐   │
+│  │              User Interface Layer                │   │
+│  │  ├─ Header Section                              │   │
+│  │  ├─ Search Bar                                  │   │
+│  │  ├─ Medicine Database Display                   │   │
+│  │  └─ Interactive Components                      │   │
+│  └─────────────────────────────────────────────────┘   │
+│              ↓                                            │
+│  ┌─────────────────────────────────────────────────┐   │
+│  │          Business Logic Layer (JavaScript)      │   │
+│  │  ├─ Search Algorithm                            │   │
+│  │  ├─ Data Filtering                              │   │
+│  │  ├─ Event Handlers                              │   │
+│  │  └─ DOM Manipulation                            │   │
+│  └─────────────────────────────────────────────────┘   │
+│              ↓                                            │
+│  ┌─────────────────────────────────────────────────┐   │
+│  │         Data Layer (Local Storage/JSON)         │   │
+│  │  ├─ Medicine Database                           │   │
+│  │  ├─ User Preferences                            │   │
+│  │  └─ Cache Data                                  │   │
+│  └─────────────────────────────────────────────────┘   │
+│              ↓                                            │
+│  ┌─────────────────────────────────────────────────┐   │
+│  │        Presentation Layer (CSS/HTML)            │   │
+│  │  ├─ Styles & Animations                         │   │
+│  │  ├─ Responsive Layout                           │   │
+│  │  └─ Visual Effects                              │   │
+│  └─────────────────────────────────────────────────┘   │
+│                                                           │
+└─────────────────────────────────────────────────────────┘] 
 *Explain your system architecture - components, data flow, tech stack interaction*
 
 **Application Workflow:**
