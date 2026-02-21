@@ -9,7 +9,7 @@
 - Member 2: [Haniya Shahul] - [Viswajothi College of Engineering and Technology]
 
 ### Hosted Project Link
-[]
+[ https://meghaelenmathews-prog.github.io/medinote/]
 
 ---
 
@@ -21,13 +21,15 @@
 
 ## The Problem Statement
 
-[What problem are you solving?]
+[Medinote solves the difficulty patients and caregivers face finding reliable, easy-to-understand medication information. It consolidates curated drug data (dosage, interactions, side effects) and a symptom checker into a searchable, mobile-friendly interface — including offline access — so users can make safer, faster decisions about medicines.]
 
 ---
 
 ## The Solution
 
-[How are you solving it?]
+We provide a curated, searchable medicine database combined with a symptom-checker and interaction checker so users can quickly find reliable drug information. The UI uses a fast, mobile-first design with intelligent search, filters, and clear dosage and interaction displays to reduce confusion. Offline caching and local storage enable access without network connectivity; data updates are handled via a verified update pipeline. Safety features include interaction alerts, contraindication warnings, and links to evidence-backed sources. The system integrates optional APIs for drug data, supports personalization (preferences, reminders), and follows accessibility and privacy best practices.
+
+
 
 ---
 
@@ -37,13 +39,13 @@
 
 #### For Software:
 
-**Languages used:** [e.g., JavaScript, Python, Java]
+**Languages used:** HTML, CSS, JavaScript
 
-**Frameworks used:** [e.g., React, Django, Spring Boot]
+**Frameworks used:** Vanilla JavaScript (no frontend framework)
 
-**Libraries used:** [e.g., axios, pandas, JUnit]
+**Libraries used:** Google Fonts (Poppins); no external JavaScript libraries (uses local JSON/localStorage)
 
-**Tools used:** [e.g., VS Code, Git, Docker]
+**Tools used:** VS Code, Git, GitHub Pages (hosting), Live Server (local development)
 
 #### For Hardware:
 
@@ -59,10 +61,16 @@
 
 List the key features of your project:
 
-- **Feature 1:** [Description]
-- **Feature 2:** [Description]
-- **Feature 3:** [Description]
-- **Feature 4:** [Description]
+- **Smart Medicine Search:** Fast fuzzy search across medicine names, indications, and brands.
+- **Symptom Checker:** Guided symptom input with suggested conditions and next-steps.
+- **Drug Interaction Alerts:** Automatic warnings for dangerous interactions and contraindications.
+- **Dosage & Administration Guides:** Clear dosing, age/weight considerations, and route of administration.
+- **Personalized Reminders:** Medication schedules, push/notification reminders, and adherence tracking.
+- **Offline Access & Caching:** Local storage caching for access without network connectivity and sync on reconnect.
+- **Favorites & Search History:** Bookmark medicines, save notes, and view recent searches.
+- **Responsive, Accessible UI:** Mobile-first design, dark mode, and basic WCAG accessibility considerations.
+- **Evidence Links & Sources:** Links to trusted medical references and citations for each entry.
+- **Export & Print:** Export medicine lists or print patient-friendly summaries (PDF/print-ready).
 
 ---
 
@@ -148,31 +156,23 @@ List the key features of your project:
 
 **Application Workflow:**
 
-[Workflow] 
-*Add caption explaining your workflow*
+- **Landing & Search:** User opens the app and sees a prominent search bar and quick links (Symptom Checker, Favorites). As the user types, the frontend filters the local medicines dataset (JSON) and displays ranked results with key metadata.
 
-### For Hardware:
+- **Medicine Detail Flow:** Selecting a medicine opens the detail view showing indications, dosage, side effects, interactions, and evidence links. The UI highlights warnings and shows alternative options where applicable.
 
-#### Schematic & Circuit
+- **Interaction Checking:** When the user adds medicines to a temporary list or to their profile, the app runs a client-side interaction check (comparing active ingredients and contraindications) and displays alerts with severity and suggested actions.
 
-![Circuit](Add your circuit diagram here) 
-*Add caption explaining connections*
+- **Symptom Checker Flow:** The guided symptom-checker prompts for symptoms and basic context (age, duration). It returns probable conditions, suggested next steps (self-care, seek medical help), and related medicines to review.
 
-![Schematic](Add your schematic diagram here) 
-*Add caption explaining the schematic*
+- **Personalization & Reminders:** Users can save favorites, set medication reminders, and store basic preferences in `localStorage`. Reminders use the browser Notification API (with permission) or rely on scheduled local reminders when supported.
 
-#### Build Photos
+- **Offline & Sync:** The app caches core assets and the medicines JSON for offline use. On reconnect, it checks a hosted data file for updates and merges changes while preserving local user data.
 
-![Team](Add photo of your team here)
+- **Export / Print:** Users can export or print patient-friendly medicine summaries (PDF/print-ready) from the detail or favorites view.
 
-![Components](Add photo of your components here) 
-*List out all components shown*
+- **Admin / Data Update:** Maintainers update the source JSON/data in the repo; a simple CI or manual deploy updates the hosted data used for sync (e.g., via GitHub Pages).
 
-![Build](Add photos of build process here) 
-*Explain the build steps*
-
-![Final](Add photo of final product here) 
-*Explain the final build*
+- **Privacy & Safety:** Personal data (favorites, reminders) is stored locally by default. Any optional cloud sync is opt-in and uses secure authenticated APIs; sensitive actions show clear safety warnings and source citations.
 
 ---
 
@@ -186,17 +186,31 @@ List the key features of your project:
 
 ##### Endpoints
 
-**GET /api/endpoint**
+**GET /api/medicines**
 
-- Description: [What it does]
-- Parameters:
-  - `param1` (string): [Description]
-  - `param2` (integer): [Description]
+- Description: Search medicines and return paginated results. Supports searching by name, indication, or active ingredient.
+- Query parameters:
+  - `q` (string, optional): Search query (medicine name, indication, or ingredient).
+  - `page` (integer, optional): Page number (default: 1).
+  - `limit` (integer, optional): Items per page (default: 20).
 - Response:
   ```json
   {
     "status": "success",
-    "data": {}
+    "data": {
+      "total": 123,
+      "page": 1,
+      "limit": 20,
+      "results": [
+        {
+          "id": "paracetamol_500",
+          "name": "Paracetamol 500mg",
+          "active_ingredient": "Paracetamol",
+          "indications": ["Fever", "Pain"],
+          "dosage": "500mg every 4-6 hours; max 4g/day"
+        }
+      ]
+    }
   }
   ```
 
@@ -220,206 +234,7 @@ List the key features of your project:
 
 [Add more endpoints as needed...]
 
-### For Mobile Apps:
 
-#### App Flow Diagram
-
-[App Flow] 
-*Explain the user flow through your application*
-
-#### Installation Guide
-
-**For Android (APK):**
-
-1. Download the APK from [Release Link]
-2. Enable "Install from Unknown Sources" in your device settings:
-   - Go to Settings > Security
-   - Enable "Unknown Sources"
-3. Open the downloaded APK file
-4. Follow the installation prompts
-5. Open the app and enjoy!
-
-**For iOS (IPA) - TestFlight:**
-
-1. Download TestFlight from the App Store
-2. Open this TestFlight link: [Your TestFlight Link]
-3. Click "Install" or "Accept"
-4. Wait for the app to install
-5. Open the app from your home screen
-
-**Building from Source:**
-
-```bash
-# For Android
-flutter build apk
-# or
-./gradlew assembleDebug
-
-# For iOS
-flutter build ios
-# or
-xcodebuild -workspace App.xcworkspace -scheme App -configuration Debug
-```
-
-### For Hardware Projects:
-
-#### Bill of Materials (BOM)
-
-| Component | Quantity | Specifications | Price | Link/Source |
-|-----------|----------|----------------|-------|-------------|
-| Arduino Uno | 1 | ATmega328P, 16MHz | ₹450 | [Link] |
-| LED | 5 | Red, 5mm, 20mA | ₹5 each | [Link] |
-| Resistor | 5 | 220Ω, 1/4W | ₹1 each | [Link] |
-| Breadboard | 1 | 830 points | ₹100 | [Link] |
-| Jumper Wires | 20 | Male-to-Male | ₹50 | [Link] |
-| [Add more...] | | | | |
-
-**Total Estimated Cost:** ₹[Amount]
-
-#### Assembly Instructions
-
-**Step 1: Prepare Components**
-
-- Gather all components listed in the BOM
-- Check component specifications
-- Prepare your workspace 
-
-*Step 1 Caption: All components laid out*
-
-**Step 2: Build the Power Supply**
-
-- Connect the power rails on the breadboard
-- Connect Arduino 5V to breadboard positive rail
-- Connect Arduino GND to breadboard negative rail 
-
-*Step 2 Caption: Power connections completed*
-
-**Step 3: Add Components**
-
-- Place LEDs on breadboard
-- Connect resistors in series with LEDs
-- Connect LED cathodes to GND
-- Connect LED anodes to Arduino digital pins (2-6) 
-
-*Step 3 Caption: LED circuit assembled*
-
-**Step 4: [Continue for all steps...]**
-
-**Final Assembly:** 
-*Final Build Caption: Completed project ready for testing*
-
-### For Scripts/CLI Tools:
-
-#### Command Reference
-
-**Basic Usage:**
-
-```
-python script.py [options] [arguments]
-```
-
-**Available Commands:**
-
-- `command1 [args]` - Description of what command1 does
-- `command2 [args]` - Description of what command2 does
-- `command3 [args]` - Description of what command3 does
-
-**Options:**
-
-- `-h, --help` - Show help message and exit
-- `-v, --verbose` - Enable verbose output
-- `-o, --output FILE` - Specify output file path
-- `-c, --config FILE` - Specify configuration file
-- `--version` - Show version information
-
-**Examples:**
-
-```bash
-# Example 1: Basic usage
-python script.py input.txt
-
-# Example 2: With verbose output
-python script.py -v input.txt
-
-# Example 3: Specify output file
-python script.py -o output.txt input.txt
-
-# Example 4: Using configuration
-python script.py -c config.json --verbose input.txt
-```
-
-#### Demo Output
-
-**Example 1: Basic Processing**
-
-Input:
-```
-This is a sample input file
-with multiple lines of text
-for demonstration purposes
-```
-
-Command:
-```bash
-python script.py sample.txt
-```
-
-Output:
-```
-Processing: sample.txt
-Lines processed: 3
-Characters counted: 86
-Status: Success
-Output saved to: output.txt
-```
-
-**Example 2: Advanced Usage**
-
-Input:
-```json
-{
-  "name": "test",
-  "value": 123
-}
-```
-
-Command:
-```bash
-python script.py -v --format json data.json
-```
-
-Output:
-```
-[VERBOSE] Loading configuration...
-[VERBOSE] Parsing JSON input...
-[VERBOSE] Processing data...
-{
-  "status": "success",
-  "processed": true,
-  "result": {
-    "name": "test",
-    "value": 123,
-    "timestamp": "2024-02-07T10:30:00"
-  }
-}
-[VERBOSE] Operation completed in 0.23s
-```
-
----
-
-## Project Demo
-
-### Video
-
-[Add your demo video link here - YouTube, Google Drive, etc.]
-
-*Explain what the video demonstrates - key features, user flow, technical highlights*
-
-### Additional Demos
-
-[Add any extra demo materials/links - Live site, APK download, online demo, etc.]
-
----
 
 ## AI Tools Used (Optional - For Transparency Bonus)
 
@@ -461,7 +276,7 @@ If you used AI tools during development, document them here for transparency:
 
 ## License
 
-This project is licensed under the [LICENSE_NAME] License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ### Common License Options:
 
