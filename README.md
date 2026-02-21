@@ -9,7 +9,7 @@
 - Member 2: [Haniya Shahul] - [Viswajothi College of Engineering and Technology]
 
 ### Hosted Project Link
-[mention your project hosted link here]
+[]
 
 ---
 
